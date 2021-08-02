@@ -48,7 +48,7 @@ const onListening = () => {
 };
 
 // config the listen port to the server, if env port is not avaliable takes the 3000 port as default
-const port = normalizePort(process.env.PORT || 3000);
+const port = normalizePort(process.env.MONGODB_URI || 3000);
 // configuration for express environment
 app.set("port", port);
 // create the server

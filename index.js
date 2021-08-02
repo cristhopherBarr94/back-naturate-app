@@ -22,7 +22,8 @@ const postsRoutes = require("./routes/posts");
 // 200.118.62.30 ip db
 mongoose
   .connect(
-    "mongodb+srv://criss:vYZstQVVRAJarRiI@cluster0.rkmlt.mongodb.net/crudOperations",
+    // "mongodb+srv://criss:vYZstQVVRAJarRiI@cluster0.rkmlt.mongodb.net/crudOperations",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
