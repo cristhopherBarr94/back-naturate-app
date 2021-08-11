@@ -15,6 +15,8 @@ const app = express();
 const userRoutes = require("./routes/users");
 // import user route
 const postsRoutes = require("./routes/posts");
+// create vriable to connect Mongodb from heroku
+const uri = process.env.MONGODB_URI;
 
 // connect with mongodb
 // user criss
@@ -23,7 +25,7 @@ const postsRoutes = require("./routes/posts");
 mongoose
   .connect(
     // "mongodb+srv://criss:vYZstQVVRAJarRiI@cluster0.rkmlt.mongodb.net/crudOperations",
-    process.env.MONGODB_URI,
+    uri,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {

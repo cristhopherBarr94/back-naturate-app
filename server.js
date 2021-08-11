@@ -1,5 +1,5 @@
 // import libraries
-const app = require("./backend/index");
+const app = require("./index");
 const debug = require("debug")("node-angular");
 const http = require("http");
 
@@ -19,7 +19,6 @@ const normalizePort = (val) => {
 
   return false;
 };
-
 // create onError function
 const onError = (error) => {
   if (error.syscall !== "listen") {
