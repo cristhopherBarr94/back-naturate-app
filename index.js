@@ -22,22 +22,22 @@ const uri = process.env.MONGODB_URI;
 // user criss
 // password: vYZstQVVRAJarRiI
 // 200.118.62.30 ip db
-// mongoose
-//   .connect(
-//     // "mongodb+srv://criss:vYZstQVVRAJarRiI@cluster0.rkmlt.mongodb.net/crudOperations",
-//     uri,
-//     { useNewUrlParser: true, useUnifiedTopology: true }
-//   )
-//   .then(() => {
-//     console.log("Connected to database!");
-//   })
-//   .catch(() => {
-//     console.error("connection failed!");
-//   });
-// // handle error
-// mongoose.connection.on("error", (err) => {
-//   console.error(err);
-// });
+mongoose
+  .connect(
+    // "mongodb+srv://criss:vYZstQVVRAJarRiI@cluster0.rkmlt.mongodb.net/crudOperations",
+    uri,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.error("connection failed!");
+  });
+// handle error
+mongoose.connection.on("error", (err) => {
+  console.error(err);
+});
 
 // boody parser configuration
 app.use(bodyParser.json());
