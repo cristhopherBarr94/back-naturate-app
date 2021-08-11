@@ -43,7 +43,7 @@ mongoose.connection.on("error", (err) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // set the images folder as public ir order to allow the clients fetch data
-app.use("/images", express.static(path.join("backend/images")));
+app.use("/images", express.static(path.join("./images")));
 // implement cors middleware
 app.use((req, res, next) => {
   // enable * (any domain) to get access to resorces
