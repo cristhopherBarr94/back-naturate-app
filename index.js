@@ -57,7 +57,7 @@ app.use((req, res, next) => {
   // add the http metohds allowed
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE"
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
   );
   // operator that allow us to pass to the next middleware
   next();
