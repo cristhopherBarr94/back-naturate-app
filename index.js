@@ -61,6 +61,7 @@ app.use(
     preflightContinue: true,
   })
 );
+app.options("*", cors());
 
 // app.use((req, res, next) => {
 //   // enable * (any domain) to get access to resorces
