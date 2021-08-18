@@ -48,11 +48,11 @@ const storage = multer.diskStorage({
   },
 });
 
-// enable pre-flight request for DELETE request
-app.options("*", cors());
+// enable pre-flight request for post request
+app.options("/signup", cors());
 
 // create a signup route to stored a new user in the db
-router.post("/signup", (req, res, next) => {
+router.post("/signup", cors(), (req, res, next) => {
   // create a new user element from user model
   // hasing the password with a complexity(rounds) of 10 ramdom numbers
   // this method (hash) returns a promise with the password hashed as result
@@ -86,7 +86,9 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+app.options("/login", cors());
+
+router.post("/login", cors(), (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
   // returns a pormise with the search result
@@ -145,8 +147,10 @@ router.post("/login", (req, res, next) => {
 });
 
 // update user photo
+app.options("/updatePic", cors());
 router.put(
   "/updatePic",
+  cors(),
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
@@ -174,8 +178,10 @@ router.put(
   }
 );
 // update user banner
+app.options("/updateBanner", cors());
 router.put(
   "/updateBanner",
+  cors(),
   checkAuth,
   multer({ storage: storage }).single("banner"),
   (req, res, next) => {
@@ -203,7 +209,8 @@ router.put(
   }
 );
 //update basic information
-router.put("/updateBasicData", checkAuth, (req, res, next) => {
+app.options("/updateBasicData", cors());
+router.put("/updateBasicData", cors(), checkAuth, (req, res, next) => {
   console.log(req.body);
   const newData = new User({
     _id: req.userData.userId,
@@ -223,7 +230,9 @@ router.put("/updateBasicData", checkAuth, (req, res, next) => {
   });
 });
 //obtain the data oof a single user by _id
-router.get("/singleUser", checkAuth, (req, res, next) => {
+app.options("/singleUser", cors());
+
+router.get("/singleUser", cors(), checkAuth, (req, res, next) => {
   User.findOne({ _id: req.userData.userId })
     .then((singleUser) => {
       let userData = {
