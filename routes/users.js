@@ -21,9 +21,6 @@ const MIME_TYPE_MAP = {
   "image/jpg": "jpg",
 };
 
-// enable pre-flight request for DELETE request
-app.options("/login", cors());
-
 // create storage variable to define where multer put the files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -50,6 +47,9 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   },
 });
+
+// enable pre-flight request for DELETE request
+app.options("*", cors());
 
 // create a signup route to stored a new user in the db
 router.post("/signup", (req, res, next) => {
@@ -86,7 +86,7 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.post("/login", cors(), (req, res, next) => {
+router.post("/login", (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
   // returns a pormise with the search result
