@@ -11,6 +11,8 @@ const router = express.Router();
 const multer = require("multer");
 // import the atuh middleware
 const checkAuth = require("../middleware/check-auth");
+// import cors libraries
+const cors = require("cors");
 
 // MIME_TYPE_MAP define the allowed types of file img
 const MIME_TYPE_MAP = {
@@ -18,6 +20,9 @@ const MIME_TYPE_MAP = {
   "image/jpeg": "jpg",
   "image/jpg": "jpg",
 };
+
+// enable pre-flight request for DELETE request
+app.options("/login", cors());
 
 // create storage variable to define where multer put the files
 const storage = multer.diskStorage({
@@ -81,7 +86,7 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", cors(), (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
   // returns a pormise with the search result
