@@ -1,3 +1,5 @@
+// import cors to set headers easily
+const cors = require("cors");
 //import express framework
 const express = require("express");
 // import path tool to create a new path for accesibility in request
@@ -7,8 +9,6 @@ const bodyParser = require("body-parser");
 
 // import mongoose to connect with mongo database
 const mongoose = require("mongoose");
-// import cors to set headers easily
-const cors = require("cors");
 // create express app
 const app = express();
 
@@ -42,8 +42,8 @@ mongoose.connection.on("error", (err) => {
 
 // boody parser configuration
 // set max size limit for request
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false, limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 // set the images folder as public ir order to allow the clients fetch data
 app.use("/images", express.static(path.join("./images")));
