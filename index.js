@@ -47,37 +47,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/images", express.static(path.join("./images")));
 
 // implement cors middleware
-// app.use(
-//   cors({
-//     origin: "*",
-//     allowedHeaders: [
-//       "Origin",
-//       "X-Requested-With",
-//       "Content-Type",
-//       "Accept",
-//       "Authorization",
-//     ],
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     preflightContinue: true,
-//   })
-// );
-app.use((req, res, next) => {
-  // enable * (any domain) to get access to resorces
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  //add some extra headers
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  // add the http metohds allowed
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-  // operator that allow us to pass to the next middleware
-  next();
-});
+app.use(
+  cors({
+    origin: "*",
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: true,
+  })
+);
+
+// app.use((req, res, next) => {
+//   // enable * (any domain) to get access to resorces
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   //add some extra headers
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   // add the http metohds allowed
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+//   );
+//   // operator that allow us to pass to the next middleware
+//   next();
+// });
 
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postsRoutes);
