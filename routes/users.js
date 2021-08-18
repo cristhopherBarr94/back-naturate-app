@@ -50,7 +50,6 @@ const storage = multer.diskStorage({
 
 // enable pre-flight request for post request
 app.options("/signup", cors());
-
 // create a signup route to stored a new user in the db
 router.post("/signup", cors(), (req, res, next) => {
   // create a new user element from user model
@@ -86,9 +85,14 @@ router.post("/signup", cors(), (req, res, next) => {
   });
 });
 
-app.options("/login", cors());
-
-router.post("/login", cors(), (req, res, next) => {
+const issue2options = {
+  origin: true,
+  methods: ["POST"],
+  credentials: true,
+  maxAge: 3600,
+};
+app.options("/login", cors(issue2options));
+router.post("/login", cors(issue2options), (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
   // returns a pormise with the search result
