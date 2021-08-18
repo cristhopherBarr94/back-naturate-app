@@ -58,7 +58,7 @@ app.use(
       "Authorization",
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
+    preflightContinue: true,
   })
 );
 // app.use((req, res, next) => {
