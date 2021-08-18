@@ -12,7 +12,7 @@ const multer = require("multer");
 // import the atuh middleware
 const checkAuth = require("../middleware/check-auth");
 // import cors libraries
-// const cors = require("cors");
+const cors = require("cors");
 
 // MIME_TYPE_MAP define the allowed types of file img
 const MIME_TYPE_MAP = {
@@ -85,8 +85,8 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-// app.options("/login", cors());
-router.post("/login", (req, res, next) => {
+app.options("/login", cors());
+router.post("/login", cors(), (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
   // returns a pormise with the search result
