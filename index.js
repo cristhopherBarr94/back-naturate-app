@@ -44,7 +44,7 @@ mongoose.connection.on("error", (err) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // set max size limit for request
-app.use(bodyParser({ limit: "5mb" }));
+app.use(bodyParser({ limit: "50mb" }));
 // set the images folder as public ir order to allow the clients fetch data
 app.use("/images", express.static(path.join("./images")));
 
