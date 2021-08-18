@@ -85,7 +85,6 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-app.options("/login", cors());
 router.post("/login", cors(), (req, res, next) => {
   let fetchedUser;
   // find the unique user by email prop
