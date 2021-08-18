@@ -47,7 +47,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/images", express.static(path.join("./images")));
 
 // implement cors middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 // app.use((req, res, next) => {
 //   // enable * (any domain) to get access to resorces
 //   res.setHeader("Access-Control-Allow-Origin", "*");
