@@ -50,6 +50,8 @@ app.use("/images", express.static(path.join("./images")));
 app.use(
   cors({
     origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
   })
 );
 // app.use((req, res, next) => {
