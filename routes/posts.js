@@ -2,7 +2,9 @@ const express = require("express");
 const multer = require("multer");
 const Post = require("../models/posts");
 const router = express.Router();
-// import the atuh middleware
+// import cors libraries
+const cors = require("cors");
+// import the auth middleware
 const checkAuth = require("../middleware/check-auth");
 
 // MIME_TYPE_MAP define the allowed types of file img
@@ -43,6 +45,7 @@ const storage = multer.diskStorage({
 
 router.post(
   "",
+  cors(),
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
@@ -73,7 +76,7 @@ router.post(
 );
 
 // get list method
-router.get("", (req, res, next) => {
+router.get("", cors(), (req, res, next) => {
   // define query parameters
   // plus icon  "+" transform the query data in number variables
   const pagesize = +req.query.pagesize;
@@ -107,7 +110,7 @@ router.get("", (req, res, next) => {
 });
 
 // get post by user _id
-router.get("/postByUser", checkAuth, (req, res, next) => {
+router.get("/postByUser", cors(), checkAuth, (req, res, next) => {
   console.log("lista de posts por usuario");
   Post.find()
     .where("create_by")
@@ -122,7 +125,7 @@ router.get("/postByUser", checkAuth, (req, res, next) => {
 });
 
 // endpoint to fetch data inreload event from edit form
-router.get("/:id", (req, res, next) => {
+router.get("/:id", cors(), (req, res, next) => {
   Post.findById(req.params.id).then((filteredPost) => {
     if (filteredPost) {
       res.status(200).json(filteredPost);
@@ -135,6 +138,7 @@ router.get("/:id", (req, res, next) => {
 // put post method
 router.put(
   "/:id",
+  cors(),
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
@@ -172,7 +176,7 @@ router.put(
 );
 
 // delete operation
-router.delete("/:id", checkAuth, (req, res, next) => {
+router.delete("/:id", cors(), checkAuth, (req, res, next) => {
   // use deleteOne method from mongoose to delete a single item by their id
   // this first parameter also contains a validation of the user id in order to just let the creator delete or modify his own description
   Post.deleteOne({ _id: req.params.id, create_by: req.userData.userId }).then(
