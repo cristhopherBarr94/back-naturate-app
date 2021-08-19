@@ -50,7 +50,7 @@ app.use(
     parameterLimit: 50000,
   })
 );
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json());
 // set the images folder as public ir order to allow the clients fetch data
 app.use("/images", express.static(path.join("./images")));
 
