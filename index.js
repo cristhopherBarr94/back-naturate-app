@@ -51,7 +51,7 @@ app.use(
     extended: true,
   })
 );
-app.use(express.json());
+
 // set the images folder as public ir order to allow the clients fetch data
 app.use("/images", express.static(path.join("./images")));
 
