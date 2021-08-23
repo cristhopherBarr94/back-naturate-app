@@ -4,16 +4,17 @@ const cors = require("cors");
 const express = require("express");
 // import path tool to create a new path for accesibility in request
 const path = require("path");
+// import mongoose to connect with mongo database
+const mongoose = require("mongoose");
+// create express app
+const app = express();
+
 // import body-parser package to storage the data from user request
 const bodyParser = require("body-parser");
 // boody parser configuration
 // set max size limit for request
 app.use(bodyParser.json({ limit: "25mb" }));
 app.use(bodyParser.urlencoded({ limit: "25mb" }));
-// import mongoose to connect with mongo database
-const mongoose = require("mongoose");
-// create express app
-const app = express();
 
 // import user route
 const userRoutes = require("./routes/users");
