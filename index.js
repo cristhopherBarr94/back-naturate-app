@@ -6,7 +6,10 @@ const express = require("express");
 const path = require("path");
 // import body-parser package to storage the data from user request
 const bodyParser = require("body-parser");
-
+// boody parser configuration
+// set max size limit for request
+app.use(bodyParser.json({ limit: "25mb" }));
+app.use(bodyParser.urlencoded({ limit: "25mb" }));
 // import mongoose to connect with mongo database
 const mongoose = require("mongoose");
 // create express app
@@ -39,22 +42,6 @@ mongoose
 mongoose.connection.on("error", (err) => {
   console.error(err);
 });
-
-// boody parser configuration
-// set max size limit for request
-app.use(
-  bodyParser.Options.json({
-    limit: "50mb",
-  })
-);
-
-app.use(
-  bodyParser.urlencoded({
-    limit: "50mb",
-    parameterLimit: 100000,
-    extended: true,
-  })
-);
 
 // set the images folder as public ir order to allow the clients fetch data
 app.use("/images", express.static(path.join("./images")));
