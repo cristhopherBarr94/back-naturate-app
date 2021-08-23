@@ -42,12 +42,17 @@ mongoose.connection.on("error", (err) => {
 
 // boody parser configuration
 // set max size limit for request
-app.use(bodyParser.json());
+app.use(
+  bodyParser.json({
+    limit: "50mb",
+  })
+);
+
 app.use(
   bodyParser.urlencoded({
     limit: "50mb",
+    parameterLimit: 100000,
     extended: true,
-    parameterLimit: 50000,
   })
 );
 app.use(express.json());
