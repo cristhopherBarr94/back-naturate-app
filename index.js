@@ -45,8 +45,8 @@ app.use("/images", express.static(path.join("./images")));
 
 // boody parser configuration
 // set max size limit for request
-app.use(express.json({ limit: 52428800 }));
-app.use(express.urlencoded({ limit: 52428800 }));
+app.use(express.json({ limit: "1000kb" }));
+app.use(express.urlencoded({ limit: "1000kb" }));
 
 // implement cors middleware
 app.use(
