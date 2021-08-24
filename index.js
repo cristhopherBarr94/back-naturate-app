@@ -10,8 +10,8 @@ const mongoose = require("mongoose");
 const app = express();
 
 // import body-parser package to storage the data from user request
-const bodyParser = require("body-parser");
 
+const bodyParser = require("body-parser");
 // import user route
 const userRoutes = require("./routes/users");
 // import user route
@@ -46,9 +46,9 @@ app.use("/images", express.static(path.join("./images")));
 // boody parser configuration
 // set max size limit for request
 // boody parser configuration
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.raw());
+app.use(express.urlencoded());
+app.use(express.json());
+app.use(express.raw());
 
 // implement cors middleware
 app.use(
